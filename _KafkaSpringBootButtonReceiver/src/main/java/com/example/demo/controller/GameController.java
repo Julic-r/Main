@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.ButtonEvent;
+import com.example.demo.service.ButtonEventService;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +13,7 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Flux;
 
 import javax.annotation.PostConstruct;
 
@@ -20,6 +23,9 @@ public class GameController {
 
     @Autowired
     private KafkaTemplate<String, String> kafkaTemplate;
+
+    @Autowired
+    private ButtonEventService buttonEventService;
 
     @Value(value = "${kafka-topic}")
     private String kafkaTopic;
@@ -47,5 +53,17 @@ public class GameController {
         });
 
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/button-click")
+    public Flux<ButtonEvent> getWeatherInfo() {
+        return Flux.create(sink -> {
+            buttonEventService.registerListener(new ButtonEventListener() {
+                @Override
+                public void onButtonClick() {
+                    sink.next(new ButtonEvent("event"));
+                }
+            });
+        });
     }
 }
