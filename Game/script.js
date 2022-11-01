@@ -7,7 +7,7 @@ var game = document.getElementById("game");
 var modal = document.getElementById("myModal");
 var startModal = document.getElementById("startModal");
 
-
+var startGameTimer=4;
 
 var runCounter=0;
 var gameScore=0;
@@ -95,7 +95,7 @@ setInterval(function(){
 
     elapsedTime = Date.now();
     //Bringt Spiele-Seite zurück zur Index-Seite
-    if(((elapsedTime - lastJumped)/1000) > 5){
+    if(((elapsedTime - lastJumped)/1000) > 30){
 
            document.location.href = "http://127.0.0.1:8887/";
     }
@@ -132,6 +132,7 @@ setInterval(function(){
         //Startet einen X Sekunden langen Countdown währenddessen das Spiel nicht weitergespielt werden kann und durch ein Fenster mit dem gameScore blockiert wird
         var countDeathSeconds = setInterval(() => {
             deathTimer++;
+            //document.getElementById('popupText').innerText = "Dein Score: " + gameScore  + Enviroment.NewLine + " Druecke Springen in " + deathTimer + "Sekunden um ein neues Spiel zu starten.";
             if(deathTimer>5){
                 deathTimer = 0;
 
@@ -140,36 +141,14 @@ setInterval(function(){
 
         }, 1000)
     }
-
+    
 
 }, 10);
  function startGameDisplay(){
     hideObjectives();
     startModal.style.display = "block";
  }
-/*
-function speedIncrease(){
-    block.style.display = "none";
-    blockBottom.style.display = "none";
-    var speed = 0;
-    console.log("testzwei");
-    speed = setInterval(() => {
 
-            console.log("speed" + speed);
-            speed++;
-            if(speed>2){
-            speed = 0;
-            console.log("triggered")
-               block.style.display = "block";
-               blockBottom.style.display = "block";
-               block.style.left = '0%';
-               blockBottom.style.left = '0%';
-               clearInterval(speed);
-            }
-
-        }, 1000);
-
-}*/
 function pauseGame(){
 
     hideObjectives();
@@ -186,7 +165,83 @@ function hideObjectives(){
         blockBottom.style.display = "none";
         character.style.display = "none";
 }
-/*
+
+function reset(){
+
+    if(checker==1){
+        block.style.left = '0%';
+        blockBottom.style.left = '0%';
+        character.style.top = '50%';
+    }
+
+    character.style.display = "block";
+    block.style.display = "block";
+    blockBottom.style.display = "block";
+    modal.style.display = "none";
+    checker = 0;
+    startGameTimer=4;
+
+}
+
+
+function jump(){
+    if(document.getElementById('popupTextStart').innerText == "Knopf drücken um das Spiel zu starten!"){
+        console.log("Trigger function");
+        startGame();
+    }
+    else{
+        reset();
+        lastJumped = Date.now();
+
+    jumping = 1;
+    let jumpCount = 0;
+    var jumpInterval = setInterval(function(){
+        var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
+        if(characterTop > 6) {
+            document.getElementById("character").src = "./img/birdup.png";
+            character.style.top= (characterTop-4)+"px";
+        }
+        if(jumpCount>20){
+            clearInterval(jumpInterval);
+            jumping = 0;
+            jumpCount = 0;
+        }
+        jumpCount++;
+    }, 10)
+}
+};
+document.onkeydown = function (e) {
+    if (e.keyCode == 32) {
+        link.click();
+    }
+};
+
+function startGame(){
+
+
+        block.style.animationDuration = "blockBottom 500s infinite linear";
+        blockBottom.style.animationDuration = "blockBottom 500s infinite linear";
+        checker = 1;
+        var countStartSeconds = setInterval(() => {
+            
+            startGameTimer--;
+            document.getElementById('popupTextStart').innerText = "Spiel startet in " + startGameTimer;
+            if(startGameTimer<0){
+                console.log("StartTimer in Intervall" + startGameTimer);
+                startModal.style.display = "none";
+                block.style.animationDuration = "blockBottom 2s infinite linear";
+                blockBottom.style.animationDuration = "blockBottom 2s infinite linear";
+
+                jump();
+
+                clearInterval(countStartSeconds);
+            }
+
+        }, 1000)
+
+    }
+
+    /*
 function increaseSpeed(){
         switch(gameScore){
             case 2:
@@ -219,70 +274,27 @@ function increaseSpeed(){
         }
 }
 */
-function reset(){
 
-    if(checker==1){
-        block.style.left = '0%';
-        blockBottom.style.left = '0%';
-        character.style.top = '50%';
-    }
+/*
+function speedIncrease(){
+    block.style.display = "none";
+    blockBottom.style.display = "none";
+    var speed = 0;
+    console.log("testzwei");
+    speed = setInterval(() => {
 
-    character.style.display = "block";
-    block.style.display = "block";
-    blockBottom.style.display = "block";
-    modal.style.display = "none";
-    checker = 0;
+            console.log("speed" + speed);
+            speed++;
+            if(speed>2){
+            speed = 0;
+            console.log("triggered")
+               block.style.display = "block";
+               blockBottom.style.display = "block";
+               block.style.left = '0%';
+               blockBottom.style.left = '0%';
+               clearInterval(speed);
+            }
 
-}
+        }, 1000);
 
-function startGame(){
-    var startGameTimer=4;
-                    block.style.animationDuration = "blockBottom 500s infinite linear";
-                    blockBottom.style.animationDuration = "blockBottom 500s infinite linear";
-    checker = 1;
-    var countStartSeconds = setInterval(() => {
-        startGameTimer--;
-        document.getElementById('popupTextStart').innerText = "Spiel startet in " + startGameTimer;
-        if(startGameTimer<0){
-            startModal.style.display = "none";
-            block.style.animationDuration = "blockBottom 2s infinite linear";
-            blockBottom.style.animationDuration = "blockBottom 2s infinite linear";
-
-            jump();
-
-            clearInterval(countStartSeconds);
-        }
-
-    }, 1000)
-
-
-}
-function jump(){
-    if(startModal.style.display == "block"){
-        startGame();
-    }else{
-    reset();
-    lastJumped = Date.now();
-
-    jumping = 1;
-    let jumpCount = 0;
-    var jumpInterval = setInterval(function(){
-        var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
-        if(characterTop > 6) {
-            document.getElementById("character").src = "./img/birdup.png";
-            character.style.top= (characterTop-4)+"px";
-        }
-        if(jumpCount>20){
-            clearInterval(jumpInterval);
-            jumping = 0;
-            jumpCount = 0;
-        }
-        jumpCount++;
-    }, 10)
-}
-};
-document.onkeydown = function (e) {
-    if (e.keyCode == 32) {
-        link.click();
-    }
-};
+}*/
