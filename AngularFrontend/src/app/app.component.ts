@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent {
   }
 
   sendShootEvent() {
-    this.http.post("http://localhost:8080/send-button", null)
+    this.http.post(environment.backendUrl + "/send-button", null)
       .subscribe(
         () => console.log('Send event.')
       );
