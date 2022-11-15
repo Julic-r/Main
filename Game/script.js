@@ -1,3 +1,6 @@
+import {backEndUrl} from "./config.js";
+import {eventSourceUrl} from "./config.js";
+
 var block = document.getElementById("block");
 var blockBottom = document.getElementById("blockBottom");
 var hole = document.getElementById("hole");
@@ -31,7 +34,7 @@ var deathTimer = 0; //Wie lange ist die Runde vorbei - Wird dafür bentuzt das F
 var lastJumped; // Wann wurde das letzte mal gesprungen - Wird dafür bentutzt um auf Aktivität zu prüfen
 
 //Erhält und verarbeitet die Informationen vom Controller-Frontend
-var source = new EventSource('https://codingprof.hs-rw.de/cityrevivalbackend/button-click');
+var source = new EventSource(eventSourceUrl);
 source.addEventListener("message", (e) => {
 
         if(startModal.style.display == "block"){
@@ -100,7 +103,7 @@ setInterval(function(){
     //Bringt Spiele-Seite zurück zur Index-Seite
     if(((elapsedTime - lastJumped)/1000) > 30){
 
-           document.location.href = "https://codingprof.hs-rw.de/city-revival-game/";
+           document.location.href = backEndUrl;
     }
     if(blockSend == 0 && blockLeft < 50){
         blockSend = 1;
