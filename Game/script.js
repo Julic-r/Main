@@ -1,5 +1,6 @@
-import {backEndUrl} from "./config.js";
-import {eventSourceUrl} from "./config.js";
+var backendGameUrl = "https://codingprof.hs-rw.de/city-revival-game/game.html";
+var eventSourceUrl = "https://codingprof.hs-rw.de/cityrevivalbackend/button-click";
+var backendUrl = "https://codingprof.hs-rw.de/city-revival-game/";
 
 var block = document.getElementById("block");
 var blockBottom = document.getElementById("blockBottom");
@@ -61,8 +62,8 @@ block.addEventListener('animationiteration', () => {
     //checker = 0;
     console.log("Game Height: " + gameHeight);
     var rest = gameHeight - randomHeight;
-    if(rest > charHeight*2){
-        rest = rest - charHeight*2;
+    if(rest > charHeight*3){
+        rest = rest - charHeight*3;
     }
 
     block.style.height = gameHeight/2;
