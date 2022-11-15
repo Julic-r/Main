@@ -57,21 +57,34 @@ block.addEventListener('animationiteration', () => {
     var gameHeight = parseInt(window.getComputedStyle(game).getPropertyValue("height"));
     var charHeight = parseInt(window.getComputedStyle(character).getPropertyValue("height"));
     var holeMath = gameHeight - charHeight*2;
+
+    console.log("LOCH IM BLOCK: " + holeMath);
     var randomHeight = Math.floor(Math.random()*holeMath) +1;
     randomHeight = randomHeight;
     //checker = 0;
     console.log("Game Height: " + gameHeight);
     var rest = gameHeight - randomHeight;
+    console.log("REST: " + rest);
     if(rest > charHeight*3){
         rest = rest - charHeight*3;
     }
 
     block.style.height = gameHeight/2;
+    console.log("Height: " + block.style.height);
     blockBottom.style.height = gameHeight/2;
 
     block.style.height = randomHeight + "px";
     blockBottom.style.height = rest + "px";
-    blockBottom.style.top = gameHeight - randomHeight - rest;
+    if(gameHeight - randomHeight - rest == 0){
+        blockBottom.style.top = charHeight*3;
+    }else{
+        blockBottom.style.top = gameHeight - randomHeight - rest;
+    }
+    
+    console.log("gameHeight: " + gameHeight);
+    console.log("randomHeight: " + randomHeight);
+    console.log("REST: " + rest);
+    console.log("TOP: " + blockBottom.style.top);
         var gameWidth = parseInt(window.getComputedStyle(game).getPropertyValue("width"));
 
     var blockLeft = parseInt(window.getComputedStyle(block).getPropertyValue("left"));
@@ -104,7 +117,7 @@ setInterval(function(){
     //Bringt Spiele-Seite zurück zur Index-Seite
     if(((elapsedTime - lastJumped)/1000) > 30){
 
-           document.location.href = backEndUrl;
+           document.location.href = backendUrl;
     }
     if(blockSend == 0 && blockLeft < 50){
         blockSend = 1;
