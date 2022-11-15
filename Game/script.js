@@ -22,7 +22,7 @@ var trackFirstJump = 0;
 var gameScoreDate;
 
 //Steuern ups and downs
-var gravity; //Character geht runter
+var gravity = parseInt(window.getComputedStyle(game).getPropertyValue("height")) / 233; //Character geht runter
 var jumpStrength; //Character geht hoch
 
 //Tracking Time
@@ -93,6 +93,8 @@ setInterval(function(){
     var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
 
 
+
+
     elapsedTime = Date.now();
     //Bringt Spiele-Seite zurück zur Index-Seite
     if(((elapsedTime - lastJumped)/1000) > 30){
@@ -104,7 +106,7 @@ setInterval(function(){
     }
     //Gravity
     if(jumping == 0){
-        character.style.top = (characterTop + 3) + "px";
+        character.style.top = (characterTop + gravity+1) + "px";
     }
 
     holeBottom = gameHeight - holeBottom;
@@ -147,6 +149,10 @@ setInterval(function(){
  function startGameDisplay(){
     hideObjectives();
     startModal.style.display = "block";
+    var gameHeight = parseInt(window.getComputedStyle(game).getPropertyValue("height"));
+    var temp = gameHeight / 7;
+    character.style.width = temp + "px";
+    character.style.height = temp + "px";
  }
 
 function pauseGame(){
@@ -199,7 +205,7 @@ function jump(){
         var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
         if(characterTop > 6) {
             document.getElementById("character").src = "./img/birdup.png";
-            character.style.top= (characterTop-4)+"px";
+            character.style.top= (characterTop-gravity-1)+"px";
         }
         if(jumpCount>20){
             clearInterval(jumpInterval);

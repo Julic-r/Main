@@ -10,7 +10,25 @@
     margin: auto;
     overflow: hidden;
 }
+#logoContainer{
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
+}
+#blueBorder{
+  position: relative; top: 10%; left: 10%;
+  width: 80%;
+
+  border: 10px solid #01A0DD;
+  border-radius: 5px;
+}
+#qrCode{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .gameDiv{
     background-image: url("./img/background.png");
     background-size: contain;
@@ -55,7 +73,10 @@
 }*/
 
 #character{
-    width: 200px;
+  background: url("./img/download.png");
+  background-repeat: no-repeat;
+    background-size: 100%;
+    width: 100px;
     height: 100px;
     position: absolute;
     top: 100px;
@@ -64,7 +85,7 @@
 
 }
 .bird{
-    background-image: url("./img/bird2.png");
+
     background-repeat: no-repeat;
     background-size: 100%;
 }
