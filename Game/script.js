@@ -31,7 +31,7 @@ var deathTimer = 0; //Wie lange ist die Runde vorbei - Wird dafür bentuzt das F
 var lastJumped; // Wann wurde das letzte mal gesprungen - Wird dafür bentutzt um auf Aktivität zu prüfen
 
 //Erhält und verarbeitet die Informationen vom Controller-Frontend
-var source = new EventSource('http://localhost:8080/button-click');
+var source = new EventSource('https://codingprof.hs-rw.de/cityrevivalbackend/button-click');
 source.addEventListener("message", (e) => {
 
         if(startModal.style.display == "block"){
