@@ -100,7 +100,7 @@ setInterval(function(){
     //Bringt Spiele-Seite zurück zur Index-Seite
     if(((elapsedTime - lastJumped)/1000) > 30){
 
-           document.location.href = "http://127.0.0.1:8887/";
+           document.location.href = "https://codingprof.hs-rw.de/city-revival-game/";
     }
     if(blockSend == 0 && blockLeft < 50){
         blockSend = 1;
