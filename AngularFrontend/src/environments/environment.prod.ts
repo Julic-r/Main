@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  backendUrl: 'http://167.235.13.234:8080'
+  backendUrl: 'https://codingprof.hs-rw.de/cityrevivalbackend'
 };
