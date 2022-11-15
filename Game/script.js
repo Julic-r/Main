@@ -91,6 +91,7 @@ setInterval(function(){
     var holeTop = parseInt(window.getComputedStyle(block).getPropertyValue("height"));
     var holeBottom = parseInt(window.getComputedStyle(blockBottom).getPropertyValue("height"));
     var characterTop = parseInt(window.getComputedStyle(character).getPropertyValue("top"));
+    var characterSize = parseInt(window.getComputedStyle(character).getPropertyValue("width"));
 
 
 
