@@ -2,3 +2,4 @@
 /node_modules
 /target
 _KafkaSpringBootButtonReceiver/target
+.DS_Store
