@@ -1,4 +1,4 @@
-var source = new EventSource('http://localhost:8080/button-click');
+var source = new EventSource('https://codingprof.hs-rw.de/cityrevivalbackend/button-click');
 source.addEventListener("message", (e) => {
 
     if(!(document.location.href == "http://127.0.0.1:8887/game.html")){
