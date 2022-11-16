@@ -10,6 +10,11 @@
     margin: auto;
     overflow: hidden;
 }
+
+.info{
+  font-size: 10vw;
+}
+
 #logoContainer{
   
   display: flex;

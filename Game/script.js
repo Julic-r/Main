@@ -12,11 +12,12 @@ var modal = document.getElementById("myModal");
 var startModal = document.getElementById("startModal");
 
 var startGameTimer=4;
+var startGamevar = 0;
 
 var runCounter=0;
 var gameScore=0;
 
-var jumping = 0;
+var jumping = 0; 
 var counter = 0;
 var checker = 1;
 var testRun = 0;
@@ -52,16 +53,14 @@ source.addEventListener("message", (e) => {
 
 
 block.addEventListener('animationiteration', () => {
-    //increaseSpeed();
 
     var gameHeight = parseInt(window.getComputedStyle(game).getPropertyValue("height"));
     var charHeight = parseInt(window.getComputedStyle(character).getPropertyValue("height"));
-    var holeMath = gameHeight - charHeight*2;
+    var holeMath = gameHeight - charHeight*3;
 
     console.log("LOCH IM BLOCK: " + holeMath);
     var randomHeight = Math.floor(Math.random()*holeMath) +1;
-    randomHeight = randomHeight;
-    //checker = 0;
+
     console.log("Game Height: " + gameHeight);
     var rest = gameHeight - randomHeight;
     console.log("REST: " + rest);
@@ -209,7 +208,7 @@ function reset(){
 
 
 function jump(){
-    if(document.getElementById('popupTextStart').innerText == "Knopf drücken um das Spiel zu starten!"){
+    if(startGamevar==0){
         console.log("Trigger function");
         startGame();
     }
@@ -246,6 +245,7 @@ function startGame(){
         block.style.animationDuration = "blockBottom 500s infinite linear";
         blockBottom.style.animationDuration = "blockBottom 500s infinite linear";
         checker = 1;
+        
         var countStartSeconds = setInterval(() => {
             
             startGameTimer--;
@@ -255,6 +255,7 @@ function startGame(){
                 startModal.style.display = "none";
                 block.style.animationDuration = "blockBottom 2s infinite linear";
                 blockBottom.style.animationDuration = "blockBottom 2s infinite linear";
+                startGamevar=1;
 
                 jump();
 
