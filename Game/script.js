@@ -91,6 +91,7 @@ block.addEventListener('animationiteration', () => {
     //Neuer Block wurde losgeshcickt
 
     if(blockSend == 1){
+        
         console.log("A GameScore: " + gameScore);
         blockSend = 0;
         gameScore++;
@@ -144,7 +145,7 @@ setInterval(function(){
         if(gameScore < 0){
             document.getElementById('popupText').innerText = "Du hast dein Bestes gegeben. Viel Erfolg beim nächsten Mal.";
         }else{
-            document.getElementById('popupText').innerText = "Dein Score: " + gameScore;
+            document.getElementById('popupText').innerText = "Dein Score: " + gameScore + "\n\n\n Blaue Fläche druecken um nochmal zu spielen!";
         }
         gameScore = 0;
 
@@ -253,7 +254,7 @@ function startGame(){
             if(startGameTimer<0){
                 console.log("StartTimer in Intervall" + startGameTimer);
                 startModal.style.display = "none";
-                block.style.animationDuration = "blockBottom 2s infinite linear";
+                block.style.animationDuration = "blockBottom 5s infinite linear";
                 blockBottom.style.animationDuration = "blockBottom 2s infinite linear";
                 startGamevar=1;
 
@@ -266,14 +267,17 @@ function startGame(){
 
     }
 
-    /*
+/*    
 function increaseSpeed(){
+    console.log("trigger1");
         switch(gameScore){
             case 2:
+                console.log("trigger2");
                 block.style.animationDuration = "block 0.8s infinite linear";
                 blockBottom.style.animationDuration = "blockBottom 0.8s infinite linear";
                 break;
-            case 15:
+            case 2:
+                startGame();
                 block.style.animationDuration = "1.6s";
                 blockBottom.style.animationDuration = "1.6s";
                 break;

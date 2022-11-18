@@ -22,8 +22,13 @@
   align-items: center;
 
 }
+
+#bottcastLogo{
+position: relative; left: 40px;
+
+}
 #blueBorder{
-  position: relative; top: 10%; left: 10%;
+  position: relative; left: 10%;
   width: 80%;
 
   border: 10px solid #01A0DD;
@@ -78,7 +83,7 @@
 }*/
 
 #character{
-  background: url("./img/download.png");
+  background: url("./img/Bottcast\ Logo\ Rund\ PNG.png");
   background-repeat: no-repeat;
     background-size: 100%;
     width: 100px;
