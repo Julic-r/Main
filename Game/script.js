@@ -115,7 +115,7 @@ setInterval(function(){
 
     elapsedTime = Date.now();
     //Bringt Spiele-Seite zurück zur Index-Seite
-    if(((elapsedTime - lastJumped)/1000) > 30){
+    if(((elapsedTime - lastJumped)/1000) > 20){
 
            document.location.href = backendUrl;
     }
