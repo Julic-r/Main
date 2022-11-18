@@ -49,7 +49,7 @@ position: relative; left: 40px;
     height: 0px;
     background-color: #029fe3;
     position: relative;
-    animation: block 3s infinite linear;
+    animation: block 2.5s infinite linear;
 }
 
 @keyframes block{
@@ -62,7 +62,7 @@ position: relative; left: 40px;
     height: 0px;
     background-color: #029fe3;
     position: relative; top: 150px;
-    animation: blockBottom 3s infinite linear;
+    animation: blockBottom 2.5s infinite linear;
 }
 @keyframes blockBottom{
     0%{left: 100%;}

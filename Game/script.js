@@ -145,7 +145,7 @@ setInterval(function(){
         if(gameScore < 0){
             document.getElementById('popupText').innerText = "Du hast dein Bestes gegeben. Viel Erfolg beim nächsten Mal.";
         }else{
-            document.getElementById('popupText').innerText = "Dein Score: " + gameScore + "\n\n\n Blaue Fläche druecken um nochmal zu spielen!";
+            document.getElementById('popupText').innerText = "Dein Score: " + gameScore + "\n\n\n Blaue Flaeche druecken um nochmal zu spielen!";
         }
         gameScore = 0;
 
