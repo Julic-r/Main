@@ -9,10 +9,11 @@ import org.springframework.kafka.core.KafkaAdmin;
 
 import java.util.HashMap;
 import java.util.Map;
-
+//Original Code from https://www.baeldung.com/spring-kafka
 @Configuration
 public class KafkaTopicConfig {
 
+    //gets the value from the variable in .\KafkaSpringBootButtonReceiver\src\main\resources\application.properties
     @Value(value = "${kafka.bootstrapAddress}")
     private String bootstrapAddress;
 

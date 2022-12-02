@@ -28,6 +28,7 @@ public class ButtonEventServiceImpl implements ButtonEventService {
         }
     }
 
+    //Original Code from https://www.baeldung.com/spring-kafka
     @KafkaListener(topics = "game-command-events")
     public void listenGroupFoo(String message) {
         System.out.println("Received Message in group foo: " + message);

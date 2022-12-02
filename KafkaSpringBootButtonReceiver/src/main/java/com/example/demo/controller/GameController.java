@@ -17,6 +17,8 @@ import reactor.core.publisher.Flux;
 
 import javax.annotation.PostConstruct;
 
+//Original Code from https://www.baeldung.com/spring-kafka
+
 @Log4j2
 @RestController
 public class GameController {
@@ -26,7 +28,7 @@ public class GameController {
 
     @Autowired
     private ButtonEventService buttonEventService;
-
+    //gets the value from the variable in .\KafkaSpringBootButtonReceiver\src\main\resources\application.properties
     @Value(value = "${kafka-topic}")
     private String kafkaTopic;
 
@@ -55,6 +57,7 @@ public class GameController {
         return ResponseEntity.ok().build();
     }
 
+    //Original Source https://raymondhlee.wordpress.com/2019/11/23/a-reactive-stack-with-spring-boot-kafka-and-angular/
     @GetMapping("/button-click")
     public Flux<ButtonEvent> getWeatherInfo() {
         return Flux.create(sink -> {

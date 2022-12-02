@@ -13,13 +13,17 @@ import org.springframework.kafka.core.DefaultKafkaConsumerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
+
+//Original Code from https://www.baeldung.com/spring-kafka
 @EnableKafka
 @Configuration
 public class KafkaConsumerConfig {
 
+    //gets the value from the variable in .\KafkaSpringBootButtonReceiver\src\main\resources\application.properties
     @Value(value = "${kafka.bootstrapAddress}")
     private String bootstrapAddress;
 
+    //gets the value from the variable in .\KafkaSpringBootButtonReceiver\src\main\resources\application.properties
     @Value(value = "${kafka-group-id}")
     private String groupId;
 

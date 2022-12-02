@@ -51,25 +51,21 @@ source.addEventListener("message", (e) => {
     }
 });
 
-
+//Kuerzt die beiden Säulen um ein "Loch" an einer zufälligen Stelle entstehen zu lassen
+//Die größe des Loches ist von der Bildschirm und Charaktergröße abhängig
 block.addEventListener('animationiteration', () => {
 
     var gameHeight = parseInt(window.getComputedStyle(game).getPropertyValue("height"));
     var charHeight = parseInt(window.getComputedStyle(character).getPropertyValue("height"));
     var holeMath = gameHeight - charHeight*3;
-
-    console.log("LOCH IM BLOCK: " + holeMath);
     var randomHeight = Math.floor(Math.random()*holeMath) +1;
-
-    console.log("Game Height: " + gameHeight);
     var rest = gameHeight - randomHeight;
-    console.log("REST: " + rest);
+
     if(rest > charHeight*3){
         rest = rest - charHeight*3;
     }
 
     block.style.height = gameHeight/2;
-    console.log("Height: " + block.style.height);
     blockBottom.style.height = gameHeight/2;
 
     block.style.height = randomHeight + "px";
@@ -114,7 +110,7 @@ setInterval(function(){
 
 
     elapsedTime = Date.now();
-    //Bringt Spiele-Seite zurück zur Index-Seite
+    //Sobald 20 Sekunden keine eingabe von dem Spielenden eingegangen ist, wird die Seite zurueck zur Anleitung geleitet.
     if(((elapsedTime - lastJumped)/1000) > 20){
 
            document.location.href = backendUrl;
@@ -129,6 +125,7 @@ setInterval(function(){
 
     holeBottom = gameHeight - holeBottom;
 
+    //Schaut im 10ms takt nach ob der Spieler die Säulen beruehrt
     if(checker == 0 && (character.style.display != "none" && ((characterTop > gameHeight - 20) || ((blockLeft < 100) && (blockLeft>-50) && ((characterTop<holeTop) || (characterTop > holeBottom)))))){
 
         blockSend = 1;
@@ -152,7 +149,6 @@ setInterval(function(){
         //Startet einen X Sekunden langen Countdown währenddessen das Spiel nicht weitergespielt werden kann und durch ein Fenster mit dem gameScore blockiert wird
         var countDeathSeconds = setInterval(() => {
             deathTimer++;
-            //document.getElementById('popupText').innerText = "Dein Score: " + gameScore  + Enviroment.NewLine + " Druecke Springen in " + deathTimer + "Sekunden um ein neues Spiel zu starten.";
             if(deathTimer>5){
                 deathTimer = 0;
 
@@ -164,6 +160,8 @@ setInterval(function(){
     
 
 }, 10);
+
+//Anfangsbildschirm
  function startGameDisplay(){
     hideObjectives();
     startModal.style.display = "block";
@@ -173,6 +171,7 @@ setInterval(function(){
     character.style.height = temp + "px";
  }
 
+///Pausiert das Spiel
 function pauseGame(){
 
     hideObjectives();
@@ -190,6 +189,7 @@ function hideObjectives(){
         character.style.display = "none";
 }
 
+///Setzt alles auf Anfang zurueck
 function reset(){
 
     if(checker==1){
@@ -207,7 +207,7 @@ function reset(){
 
 }
 
-
+//Sorgt f;r das Springen des Charakters
 function jump(){
     if(startGamevar==0){
         console.log("Trigger function");
@@ -234,12 +234,17 @@ function jump(){
     }, 10)
 }
 };
+
+//Lässt das Spiel mit Spacebar spielen
 document.onkeydown = function (e) {
     if (e.keyCode == 32) {
         link.click();
     }
 };
 
+//Wird beim ersten aufrufen ausgelöst
+//Blöcke kommen von der Seite nur sehr langsam rein
+//Lässt einen Counter zum Spielstart herunterlaufen
 function startGame(){
 
 
@@ -267,7 +272,8 @@ function startGame(){
 
     }
 
-/*    
+/*  
+Potentielle Umsetzung um das Spiel schneller werden zu lassen, funktioniert aber wäre zu schwer gewesen  
 function increaseSpeed(){
     console.log("trigger1");
         switch(gameScore){

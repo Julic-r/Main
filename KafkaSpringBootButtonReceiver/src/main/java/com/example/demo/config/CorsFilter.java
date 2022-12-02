@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+//Every Origin is allowed to send and request
 @Configuration
 @EnableWebMvc
 public class CorsFilter implements WebMvcConfigurer {

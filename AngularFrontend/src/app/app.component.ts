@@ -14,6 +14,7 @@ export class AppComponent {
   ) {
   }
 
+  // Schickt "null", an die in enviroment.ts definierte Variavble backendURL und gibt bei Erfolg "Send event" in der Konsole aus
   sendShootEvent() {
     this.http.post(environment.backendUrl + "/send-button", null)
       .subscribe(
